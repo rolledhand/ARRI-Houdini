@@ -104,7 +104,7 @@ For deeper reading and viewing on color science and pipeline decisions:
 - [ARRI Tech Talk: DP's analysis of REVEAL Color Science (video)](https://youtu.be/s_RXjVeC_7s?si=0oX8oWE6Vnm1CpH3)
 
 ## Related Projects
-[chrisbrejon/ARRI-REVEAL-OCIO-Config](https://github.com/chrisbrejon/ARRI-REVEAL-OCIO-Config) is a rather universal ARRI Reveal community reference.
+[ARRI-Houdini](https://github.com/rolledhand/ACEScg-v2.0-Houdini) ACES 2.0 cg variant. Tweaked for Houdini by me.
 
 This repo focuses on Houdini-friendly defaults, file rules, and predictable CG working space behavior instead. `ACEScg` as working space is a pipeline sanity choice. Open to feedback and solutions.
 
