@@ -3,15 +3,27 @@
 Houdini-ready OCIO config based on ARRI's studio config, using ARRI Reveal as the display transform.
 
 ## Status
-Stable and ready to use.
+Stable and ready to use. Fixes Houdini's messy OCIO issues so you don't have to. Works with external renderers like Arnold in Solaris as well. Loading this config in Nuke will transfer flawlessly.
 
 ## Quick Start
-```bash
-export OCIO=./arri-CG.ocio
+Create or edit `ocio.json` file in your Houdini `packages` folder and replace the path with your local path of the config:
+
+```json
+{
+  "enable": true,
+  "show": true,
+  "load_package_once": true,
+  "env": [
+    { "OCIO": "${OCIO-/path/to/ARRI-Houdini/arri-CG.ocio}" }
+  ]
+}
 ```
 
-Set `OCIO` to `arri-CG.ocio` before launching Houdini.
-With this config active, `ACEScg` is the intended default working space for CG content.
+Restart Houdini after adding or changing the `OCIO` setting or package file, since the config is read at startup.
+
+With this config active, `ACEScg` is the intended default working space for CG content. Select whichever display you prefer from correction toolbar & you've got the ARRI transform working.
+
+Tweaks from `OCIO editor` don't work, this side is in a `tech-debt state` by the developers of Houdini.
 
 ## What This Changes
 The original ARRI studio config is valid, but its defaults are camera-log oriented and its default file-rule behavior is not a good fit for a CG-first Houdini workflow.
