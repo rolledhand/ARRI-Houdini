@@ -21,9 +21,9 @@ Create or edit `ocio.json` file in your Houdini `packages` folder and replace th
 
 Restart Houdini after adding or changing the `OCIO` setting or package file, since the config is read at startup.
 
-With this config active, `ACEScg` is the intended default working space for CG content. Select whichever display you prefer from correction toolbar & you've got the ARRI transform working.
+With this config active, `ACEScg` is the intended default working space for CG content. Select whichever non-default display you prefer from correction toolbar & you've got the `ARRI AFL2 or Reveal` transform working.
 
-Tweaks from `OCIO editor` don't work, this side is in a `tech-debt state` by the developers of Houdini.
+The Houdini's `OCIO editor` is broken, this isn't an issue of this config, but tech-debt of SideFX which I can't fix. Any tweaks from there won't work, you have to manually edit the `arri-CG.ocio` config file if you desire any changes. Don't forget restarting Houdini if you start tweaking.
 
 ## What This Changes
 The original ARRI studio config is valid, but its defaults are camera-log oriented and its default file-rule behavior is not a good fit for a CG-first Houdini workflow.
