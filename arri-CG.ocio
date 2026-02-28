@@ -44,6 +44,12 @@ file_rules:
   - !<Rule> {name: srgb_tx, colorspace: sRGB - Texture, pattern: "*srgb_tx*", extension: "*"}
   - !<Rule> {name: srgb_texture, colorspace: sRGB - Texture, pattern: "*srgb_texture*", extension: "*"}
   - !<Rule> {name: acescg_tag, colorspace: ACEScg, pattern: "*ACEScg*", extension: "*"}
+  - !<Rule> {name: __usdz_jpg, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[jj][pp][gg]\\]"}
+  - !<Rule> {name: __usdz_jpeg, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[jj][pp][ee][gg]\\]"}
+  - !<Rule> {name: __usdz_png, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[pp][nn][gg]\\]"}
+  - !<Rule> {name: __usdz_tif, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[tt][ii][ff]\\]"}
+  - !<Rule> {name: __usdz_tiff, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[tt][ii][ff][ff]\\]"}
+  - !<Rule> {name: __usdz_exr, colorspace: ACEScg, regex: ".[uu][ss][dd][zz]\\[.*[ee][xx][rr]\\]"}
 
   # common 8-bit textures default to sRGB-Texture
   - !<Rule> {name: jpg,  colorspace: sRGB - Texture, pattern: "*", extension: jpg}
