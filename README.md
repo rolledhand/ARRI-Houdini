@@ -11,6 +11,7 @@ export OCIO=./arri-CG.ocio
 ```
 
 Set `OCIO` to `arri-CG.ocio` before launching Houdini.
+With this config active, `ACEScg` is the intended default working space for CG content.
 
 ## What This Changes
 The original ARRI studio config is valid, but its defaults are camera-log oriented and its default file-rule behavior is not a good fit for a CG-first Houdini workflow.
@@ -39,27 +40,16 @@ File rules in `./arri-CG.ocio`:
 - `.tiff` -> `sRGB - Texture`
 - `.exr` -> `ACEScg`
 - fallback `Default` -> `ACEScg`
-
-## Setup & Expected Behavior
-Houdini should load `./arri-CG.ocio` through the `OCIO` environment variable. `ACEScg` is the intended default working space for CG content.
-
-- `albedo.png` -> `sRGB - Texture` (extension rule)
-- `albedo_srgb_tx.png` -> `sRGB - Texture` (tag rule, takes precedence)
-- `lighting.exr` -> `ACEScg` (extension rule)
-- `lighting_ACEScg.exr` -> `ACEScg` (tag rule)
-
 Tag rules take precedence over extension rules.
 
 ## Troubleshooting
 ### Wrong-Looking Textures
 If a texture looks washed out, oversaturated, or double-transformed, check whether it is already display-referred, whether the filename includes `srgb_tx`, `srgb_texture`, or `ACEScg`, and whether the extension matches the intended automatic rule.
 
-### Checking Active Config Path
-```bash
-echo "$OCIO"
-```
-
-It should resolve to `./arri-CG.ocio` or your chosen path to that file.
+- `albedo.png` -> `sRGB - Texture` (extension rule)
+- `albedo_srgb_tx.png` -> `sRGB - Texture` (tag rule, takes precedence)
+- `lighting.exr` -> `ACEScg` (extension rule)
+- `lighting_ACEScg.exr` -> `ACEScg` (tag rule)
 
 ### Validating With `ociocheck`
 ```bash
