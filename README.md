@@ -74,11 +74,6 @@ For official downloads and ARRI-provided color-management materials, start here:
 - [ARRI Technical Downloads](https://www.arri.com/en/learn-help/learn-help-camera-system/technical-downloads)
 - [ARRI Color Management Assets](https://arri.canto.de/v/ARRIColorManagement/landing?viewIndex=0)
 
-## Related Projects
-[chrisbrejon/ARRI-REVEAL-OCIO-Config](https://github.com/chrisbrejon/ARRI-REVEAL-OCIO-Config) is a rather universal ARRI Reveal community reference, while this repo is specifically focused on Houdini's nuances to reach the cadence. 
-
-`ACEScg` as working space is a pipeline stability choice, if anyone manages to establish a stable `Linear BT.709 / Linear Rec.709 (sRGB)` workflow please reach out to me. Implementation tips below. Open to feedback and solutions.
-
 ## Resources for the curious ones
 For deeper reading and viewing on color science and pipeline decisions:
 
@@ -86,9 +81,14 @@ For deeper reading and viewing on color science and pipeline decisions:
 - [Chris Brejon's articles](https://chrisbrejon.com/articles/)
 - [ARRI Tech Talk: DP's analysis of REVEAL Color Science (video)](https://youtu.be/s_RXjVeC_7s?si=0oX8oWE6Vnm1CpH3)
 
+## Related Projects
+[chrisbrejon/ARRI-REVEAL-OCIO-Config](https://github.com/chrisbrejon/ARRI-REVEAL-OCIO-Config) is a rather universal ARRI Reveal community reference, while this repo is specifically focused on Houdini's nuances to reach the cadence. 
+
+`ACEScg` as working space is a pipeline stability choice, if anyone manages to establish a stable `Linear BT.709 / Linear Rec.709 (sRGB)` workflow please reach out to me. Implementation tips below. Open to feedback and solutions.
+
 ## Tweaking tips for the brave ones
 I have spent sufficient amount of time demystifying who chose whichever naming/term and how it is defined & read by other parts internally especially with non-native renderers & got beyond a point of enjoying it.
 
 I recommend testing transfers between input texture encoding to scene-linear (Solaris/MaterialX), scene-linear to Hydra delegate/viewport, Arnold maketx/.tx generation to MaterialX reads (.tx + colorspace), husk/kick EXR to comp/viewers, scene-linear to display transform, and display transform to final deliverables, then lock it in your comp/grading software of choice.
 
-The testing requirements can differ per render engine/delegate, and with the current state of documentation + inconsistent naming and some tech-debt here & there, it's honestly hit or miss unless you validate the whole chain end-to-end. Terminal with `iinfo` or `oiiotool` becomes your best friend.
+The testing requirements can differ per render engine/delegate, and with the current state of documentation + inconsistent naming and some tech-debt here & there, it's honestly hit or miss unless you validate the whole chain end-to-end. Terminal with `iinfo`, `oiiotool` & `ociocheck` become your best friend.
