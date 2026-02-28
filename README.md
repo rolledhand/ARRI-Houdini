@@ -57,17 +57,16 @@ ociocheck --iconfig arri-CG.ocio
 ociocheck --iconfig arri-studio-combined-config-v1.0.0_aces-v1.3_ocio-v2.1.ocio
 ```
 
-## Contributing
-- Treat `arri-CG.ocio` as the supported config.
-- Run `ociocheck --iconfig arri-CG.ocio` before submitting changes.
-- Document any new LUT dependencies in [THIRD_PARTY.md](./THIRD_PARTY.md).
-- Update `README.md` if roles or file rules change.
+If you need to inspect image files directly, [OpenImageIO documentation](https://openimageio.readthedocs.io/en/stable/) is a good reference, and tools like `iinfo` and `oiiotool` are useful for checking metadata, channels, and file properties.
 
 ## Validation
 `ociocheck` passes for both configs. The original config still has the extra default-rule/default-role warning, and `arri-CG.ocio` removes that specific warning.
 
-## Legal / Provenance
-No repository-wide license has been chosen yet. Bundled ARRI-derived assets remain the property of their respective owners. See [THIRD_PARTY.md](./THIRD_PARTY.md) for details.
+## Official ARRI Resources
+For official downloads and ARRI-provided color-management materials, start here:
+
+- [ARRI Technical Downloads](https://www.arri.com/en/learn-help/learn-help-camera-system/technical-downloads)
+- [ARRI Color Management Assets](https://arri.canto.de/v/ARRIColorManagement/landing?viewIndex=0)
 
 ## Related Projects
 [chrisbrejon/ARRI-REVEAL-OCIO-Config](https://github.com/chrisbrejon/ARRI-REVEAL-OCIO-Config) is a broader ARRI Reveal community reference, while this repo is specifically focused on a Houdini-friendly CG-default workflow.
