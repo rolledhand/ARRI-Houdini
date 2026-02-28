@@ -84,7 +84,7 @@ For deeper reading and viewing on color science and pipeline decisions:
 ## Related Projects
 [chrisbrejon/ARRI-REVEAL-OCIO-Config](https://github.com/chrisbrejon/ARRI-REVEAL-OCIO-Config) is a rather universal ARRI Reveal community reference, while this repo is specifically focused on Houdini's nuances to reach the cadence. 
 
-`ACEScg` as working space is a pipeline stability choice, if anyone manages to establish a stable `Linear BT.709 / Linear Rec.709 (sRGB)` workflow please reach out to me. Implementation tips below. Open to feedback and solutions.
+`ACEScg` as working space is a pipeline sanity choice, if anyone manages to establish a stable `Linear BT.709 / Linear Rec.709 (sRGB)` workflow please reach out to me. Implementation tips below. Open to feedback and solutions.
 
 ## Tweaking tips for the brave ones
 I have spent sufficient amount of time demystifying who chose whichever naming/term and how it is defined & read by other parts internally especially with non-native renderers & got beyond a point of enjoying it.
