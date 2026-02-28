@@ -3,7 +3,7 @@
 Houdini-ready OCIO config based on ARRI's studio config, using ARRI Reveal as the display transform.
 
 ## Status
-Stable and ready to use. Fixes Houdini's messy OCIO issues so you don't have to. Works with external renderers like Arnold in Solaris as well. Loading this config in Nuke will transfer flawlessly.
+Stable and ready to use. Fixes Houdini's messy OCIO issues so you don't have to. Works with external renderers, tested Arnold in Solaris (Houdini 21). Loaded this config in Nuke and it transferred flawlessly even with the final export.
 
 ## Quick Start
 Create or edit `ocio.json` file in your Houdini `packages` folder and replace the path with your local path of the config:
@@ -21,9 +21,9 @@ Create or edit `ocio.json` file in your Houdini `packages` folder and replace th
 
 Restart Houdini after adding or changing the `OCIO` setting or package file, since the config is read at startup.
 
-With this config active, `ACEScg` is the intended default working space for CG content. Select whichever non-default display you prefer from correction toolbar & you've got the `ARRI AFL2 or Reveal` transform working.
+With this config active, `ACEScg` is the intended default working space for CG content. Select whichever non-default display you prefer from the viewport correction toolbar & you've got the `ARRI ALF2 or Reveal` transform working.
 
-The Houdini's `OCIO editor` is broken, this isn't an issue of this config, but tech-debt of SideFX which I can't fix. Any tweaks from there won't work, you have to manually edit the `arri-CG.ocio` config file if you desire any changes. Don't forget restarting Houdini if you start tweaking.
+Houdini's `OCIO editor` is broken, this isn't an issue of this config, but tech-debt of SideFX which I can't fix. Any tweaks from there won't work, you have to manually edit the `arri-CG.ocio` config file if you desire any changes. Don't forget restarting Houdini if you start tweaking.
 
 ## What This Changes
 The original ARRI studio config is valid, but its defaults are camera-log oriented and its default file-rule behavior is not a good fit for a CG-first Houdini workflow.
@@ -84,6 +84,13 @@ For official downloads and ARRI-provided color-management materials, start here:
 [chrisbrejon/ARRI-REVEAL-OCIO-Config](https://github.com/chrisbrejon/ARRI-REVEAL-OCIO-Config) is a rather universal ARRI Reveal community reference, while this repo is specifically focused on Houdini's nuances to reach the cadence. 
 
 `ACEScg` as working space is a pipeline sanity choice for stability, if anyone manages to establish a stable `Linear BT.709 / Linear Rec.709 (sRGB)` workflow please reach out to me. Implementation tips below. Open to feedback and solutions.
+
+## Resources for the curious ones
+For deeper reading and viewing on color science and pipeline decisions:
+
+- [Liam Collod's Picture Lab](https://liamcollod.xyz/picture-lab-lxm/lxmpicturelab.al.sorted-color.bg-black)
+- [Chris Brejon's articles](https://chrisbrejon.com/articles/)
+- [ARRI Tech Talk: DP's analysis of REVEAL Color Science (video)](https://youtu.be/s_RXjVeC_7s?si=0oX8oWE6Vnm1CpH3)
 
 ## Tweaking tips for the brave ones
 I have spent sufficient amount of time demystifying who chose whichever naming/term and how it is defined & read by other parts internally especially with non-native renderers & got beyond a point of enjoying it.
