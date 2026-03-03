@@ -28,7 +28,7 @@ roles:
   data: Raw
 
   # CG defaults
-  default: ACEScg
+  default: ACES2065-1
   scene_linear: ACEScg
   reference: ACEScg
 
@@ -43,13 +43,9 @@ file_rules:
   # explicit tags win
   - !<Rule> {name: srgb_tx, colorspace: sRGB - Texture, pattern: "*srgb_tx*", extension: "*"}
   - !<Rule> {name: srgb_texture, colorspace: sRGB - Texture, pattern: "*srgb_texture*", extension: "*"}
+  - !<Rule> {name: lin_rec709, colorspace: Linear Rec.709 (sRGB), pattern: "*lin_rec709*", extension: "*"}
+  - !<Rule> {name: lin_srgb, colorspace: Linear Rec.709 (sRGB), pattern: "*lin_srgb*", extension: "*"}
   - !<Rule> {name: acescg_tag, colorspace: ACEScg, pattern: "*ACEScg*", extension: "*"}
-  - !<Rule> {name: __usdz_jpg, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[jj][pp][gg]\\]"}
-  - !<Rule> {name: __usdz_jpeg, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[jj][pp][ee][gg]\\]"}
-  - !<Rule> {name: __usdz_png, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[pp][nn][gg]\\]"}
-  - !<Rule> {name: __usdz_tif, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[tt][ii][ff]\\]"}
-  - !<Rule> {name: __usdz_tiff, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[tt][ii][ff][ff]\\]"}
-  - !<Rule> {name: __usdz_exr, colorspace: ACEScg, regex: ".[uu][ss][dd][zz]\\[.*[ee][xx][rr]\\]"}
 
   # common 8-bit textures default to sRGB-Texture
   - !<Rule> {name: jpg,  colorspace: sRGB - Texture, pattern: "*", extension: jpg}
@@ -57,10 +53,17 @@ file_rules:
   - !<Rule> {name: png,  colorspace: sRGB - Texture, pattern: "*", extension: png}
   - !<Rule> {name: tif,  colorspace: sRGB - Texture, pattern: "*", extension: tif}
   - !<Rule> {name: tiff, colorspace: sRGB - Texture, pattern: "*", extension: tiff}
-  - !<Rule> {name: exr,  colorspace: ACEScg,          pattern: "*", extension: exr}
+  - !<Rule> {name: exr,  colorspace: ACEScg, pattern: "*", extension: exr}
+
+  - !<Rule> {name: __usdz_jpg, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[jj][pp][gg]\\]"}
+  - !<Rule> {name: __usdz_jpeg, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[jj][pp][ee][gg]\\]"}
+  - !<Rule> {name: __usdz_png, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[pp][nn][gg]\\]"}
+  - !<Rule> {name: __usdz_tif, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[tt][ii][ff]\\]"}
+  - !<Rule> {name: __usdz_tiff, colorspace: sRGB - Texture, regex: ".[uu][ss][dd][zz]\\[.*[tt][ii][ff][ff]\\]"}
+  - !<Rule> {name: __usdz_exr, colorspace: ACEScg, regex: ".[uu][ss][dd][zz]\\[.*[ee][xx][rr]\\]"}
 
   # fallback
-  - !<Rule> {name: Default, colorspace: ACEScg}
+  - !<Rule> {name: Default, colorspace: ACES2065-1}
 
 shared_views:
   - !<View> {name: ACES 1.0 - SDR Video, view_transform: ACES 1.0 - SDR Video, display_colorspace: <USE_DISPLAY_NAME>}

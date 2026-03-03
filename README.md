@@ -21,7 +21,7 @@ Create or edit `ocio.json` file in your Houdini `packages` folder and replace th
 
 Restart Houdini after adding or changing the `OCIO` setting or package file, since the config is read at startup.
 
-With this config active, `ACEScg` is the intended default working space for CG content. Select any non-default display from the viewport Color Correction toolbar and you'll be using the `ARRI ALF2 / Reveal` transform.
+With this config active, `ACEScg` remains the intended scene-linear working space for CG content. Select any non-default display from the viewport Color Correction toolbar and you'll be using the `ARRI ALF2 / Reveal` transform.
 
 Houdini’s OCIO editor is unreliable in practice for config authoring/persistence (this isn’t specific to this config). If you want changes, edit the .ocio file directly and restart Houdini.
 
@@ -30,11 +30,11 @@ Solaris Render Gallery has its own caching/consistency quirks; don’t use it as
 ## What This Changes
 The original ARRI studio config is valid, but its defaults are camera-log oriented and its default file-rule behavior is not a good fit for a CG-first Houdini workflow.
 
-`./arri-CG.ocio` keeps the same transform inventory and LUT payloads, but switches the defaults to a CG-friendly setup so texture loading and working-space behavior are predictable in Houdini.
+`./arri-CG.ocio` keeps the same transform inventory and LUT payloads, but keeps the scene-linear and UI roles in a CG-friendly setup so texture loading and working-space behavior are more predictable in Houdini.
 
 | Role | Original config | CG config |
 | --- | --- | --- |
-| `default` | `ARRI LogC4` | `ACEScg` |
+| `default` | `ARRI LogC4` | `ACES2065-1` |
 | `scene_linear` | `Linear ARRI Wide Gamut 4` | `ACEScg` |
 | `reference` | not set | `ACEScg` |
 | `compositing_log` | `ARRI LogC4` | `ACEScct` |
@@ -47,6 +47,8 @@ File rules in `./arri-CG.ocio`:
 - `*srgb_tx*` -> `sRGB - Texture`
 - `*srgb_texture*` -> `sRGB - Texture`
 - `*ACEScg*` -> `ACEScg`
+- `*lin_rec709*` -> `Linear Rec.709 (sRGB)`
+- `*lin_srgb*` -> `Linear Rec.709 (sRGB)`
 - `__usdz_jpg` -> `sRGB - Texture`
 - `__usdz_jpeg` -> `sRGB - Texture`
 - `__usdz_png` -> `sRGB - Texture`
@@ -59,7 +61,7 @@ File rules in `./arri-CG.ocio`:
 - `.tif` -> `sRGB - Texture`
 - `.tiff` -> `sRGB - Texture`
 - `.exr` -> `ACEScg`
-- fallback `Default` -> `ACEScg`
+- fallback `Default` -> `ACES2065-1`
 Tag rules take precedence over extension rules.
 USDZ archive-internal file paths are matched by explicit regex rules before the normal extension rules.
 
@@ -78,17 +80,19 @@ SideFX explicitly notes that when reading **normal maps** with MaterialX, you sh
 [SideFX MaterialX documentation](https://www.sidefx.com/docs/houdini/solaris/materialx.html)
 
 ### Wrong-Looking Textures
-If a texture looks washed out, oversaturated, or double-transformed, check whether it is already display-referred, whether the filename includes `srgb_tx`, `srgb_texture`, or `ACEScg`, and whether the extension matches the intended automatic rule.
+If a texture looks washed out, oversaturated, or double-transformed, check whether it is already display-referred, whether the filename includes `srgb_tx`, `srgb_texture`, `ACEScg`, `lin_rec709`, or `lin_srgb`, and whether the extension matches the intended automatic rule.
 
 - `albedo.png` -> `sRGB - Texture` (extension rule)
 - `albedo_srgb_tx.png` -> `sRGB - Texture` (tag rule, takes precedence)
+- `plates_lin_rec709.exr` -> `Linear Rec.709 (sRGB)` (tag rule, takes precedence)
+- `elements_lin_srgb.exr` -> `Linear Rec.709 (sRGB)` (tag rule, takes precedence)
 - `lighting.exr` -> `ACEScg` (extension rule)
 - `lighting_ACEScg.exr` -> `ACEScg` (tag rule)
 
 If you need to inspect image files directly, [OpenImageIO documentation](https://openimageio.readthedocs.io/en/stable/) is a good reference, and tools like `iinfo` and `oiiotool` are useful for checking metadata, channels, and file properties.
 
 ## Validation
-`ociocheck` passes for both configs. The original config still has the extra default-rule/default-role warning, and `arri-CG.ocio` removes that specific warning.
+`ociocheck` passes for both configs. The original config still has the extra default-rule/default-role warning.
 
 ## Official ARRI Resources
 For official downloads and ARRI-provided color-management materials, start here:
